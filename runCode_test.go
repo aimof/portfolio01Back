@@ -13,18 +13,26 @@ func TestMakeDir(t *testing.T) {
 		t.Error("error occuer")
 	}
 	_, err = os.Stat(dirName)
-	isExist := err == nil
-	if !isExist {
+	dirIsExist := err == nil
+	if !dirIsExist {
 		t.Error("dir is not exist")
 	}
 }
 */
 
+/*
+// Pass
 func TestSetCode(t *testing.T) {
 	id := "012345678"
 	code := `print("Hello, World!")`
 	err := setCode(id, code)
 	if err != nil {
-		
+		t.Errorf("error occur: %v", err)
+	}
+	_, err = os.Stat(id + "/main.py")
+	fileIsExist := err == nil
+	if !fileIsExist {
+		t.Error("file is not exist")
 	}
 }
+*/
