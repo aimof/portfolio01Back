@@ -5,6 +5,7 @@ import (
 	"os"
 	"github.com/pkg/errors"
 	"log"
+	"os/exec"
 )
 
 func runCode(id, code string) (result Result, err error) {
@@ -34,3 +35,12 @@ func setCode(id, code string) (err error) {
 	return nil
 }
 
+func cleanDir(id string) (err error) {
+	cmd := exec.Command("sh", "-c", "docker rm " + id)
+	err = cmd.Run()
+	if err != nil {
+		errors.Wrap(err, "clean(): cannot remove docker image")
+		return err
+	}
+	return nil
+}

@@ -36,3 +36,13 @@ func runDocker(id string) (result Result, err error) {
 	}
 	return result, nil
 }
+
+func cleanContainer(id string) (err error) {
+	cmd := exec.Command("sh", "-c", "rm -Rf ./" + id)
+	err2 := cmd.Run()
+	if err2 != nil {
+		err = errors.Wrap(err, "clean(): cannnot remove dir:" + err2.Error())
+		return err
+	}
+	return nil
+}
